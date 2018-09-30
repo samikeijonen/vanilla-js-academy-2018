@@ -36,19 +36,11 @@
 		var celcius   = document.getElementById( 'celcius' );
 		var farenheit = document.getElementById( 'farenheit' );
 
-		// Listen input because it changes the values as you type them.
-		document.documentElement.addEventListener( 'input', function (event) {
-			// Bail if there is no target value.
-			if ( event.target.value.length < 1 ) {
-				return;
-			}
-
-			// Listen farenheit and change celcius value.
+		document.documentElement.addEventListener( 'change', function (event) {
 			if ( event.target.id === 'farenheit' ) {
 				celcius.value = farenheitToCelcius( event.target.value );
 			}
 
-			// Listen celcius and change farenheit value.
 			if ( event.target.id === 'celcius' ) {
 				farenheit.value = celciusToFarenheit( event.target.value );
 			}
