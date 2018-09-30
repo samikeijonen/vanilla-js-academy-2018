@@ -8,3 +8,4 @@
 
 ## Farenheit/Celcius Calculator
 1. [Farenheit/Celcius Calculator](https://samikeijonen.github.io/vanilla-js-academy-2018/project-2/)
+1. [Farenheit/Celcius Calculator - original](https://samikeijonen.github.io/vanilla-js-academy-2018/project-2/original.html)
