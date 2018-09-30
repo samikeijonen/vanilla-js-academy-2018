@@ -17,7 +17,7 @@
 
 	<h1>Farenheit/Celcius Calculator</h1>
 
-	<div class="grid grid--same-line">
+	<form class="grid grid--same-line">
 		<div class="grid__wrapper">
 			<input type="number" name="farenheit" id="farenheit" value="32">
 			<label for="farenheit">Farenheit</label>
@@ -29,10 +29,32 @@
 			<input type="number" name="celcius" id="celcius" value="0">
 			<label for="celcius">Celcius</label>
 		</div>
-	</div>
+	</form>
 
 	<script>
-		// Your code goes here...
+		// Cache variables outside event listener.
+		var celcius   = document.getElementById( 'celcius' );
+		var farenheit = document.getElementById( 'farenheit' );
+
+		document.documentElement.addEventListener( 'change', function (event) {
+			if ( event.target.id === 'farenheit' ) {
+				console.log( event.target.value );
+				celcius.setAttribute( 'value', farenheitToCelcius( event.target.value ) );
+			}
+
+			if ( event.target.id === 'celcius' ) {
+				console.log( event.target.value );
+				farenheit.setAttribute( 'value', celciusToFarenheit( event.target.value ) );
+			}
+		}, false );
+
+		function farenheitToCelcius( temp ) {
+			return (temp - 32) * 5/9;
+		}
+
+		function celciusToFarenheit( temp ) {
+			return (temp * 9/5) + 32;
+		}
 	</script>
 
 </body>
