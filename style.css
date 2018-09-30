@@ -1,0 +1,96 @@
+/**
+ * Add box sizing to everything
+ * @link http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+ */
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+/**
+* Layout
+*/
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	font-size: 112.5%;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 40em;
+	width: 88%;
+}
+
+/**
+* Typography
+*/
+h2 {
+	font-weight: normal;
+	margin-top: 2em;
+}
+
+/**
+* Forms
+*/
+input {
+	margin-bottom: 1em;
+	padding: 0.5em 1em;
+	width: 100%;
+}
+
+[type="checkbox"] {
+	width: auto;
+}
+
+label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+	width: 100%;
+}
+
+button {
+	background-color: #0088cc;
+	border: 1px solid #0088cc;
+	border-radius: 1px;
+	color: #ffffff;
+	display: inline-block;
+	font-size: 0.9375em;
+	font-weight: normal;
+	line-height: 1.2;
+	margin-right: 0.3125em;
+	margin-bottom: 0.3125em;
+	padding: 0.5em 0.6875em;
+}
+
+button:hover,
+button:focus,
+button:active {
+	background-color: #005580;
+	border-color: #005580;
+	color: #ffffff;
+	text-decoration: none;
+}
+
+/**
+ * Grids
+ */
+
+.grid {
+	display: grid;
+}
+
+.grid--same-line {
+	grid-template-columns: 1fr auto 1fr;
+}
+
+/**
+ * Utilities
+ */
+.no-bold {
+	font-weight: normal;
+}
+
+.px-1x {
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+}
