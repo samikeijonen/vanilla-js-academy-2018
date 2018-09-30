@@ -145,19 +145,19 @@
 	</form>
 
 	<script>
+		// Cache variables outside event listener.
+		var password  = document.querySelector( '#password' );
+		var password1 = document.querySelector( '#current-pw' );
+		var password2 = document.querySelector( '#new-pw' );
+
 		document.documentElement.addEventListener( 'click', function (event) {
 			// Target the first password checkbox to toggle password visibility.
 			if ( event.target.id === 'show-password' ) {
-				var password = document.querySelector( '#password' );
-
 				password.setAttribute( 'type', setInputType( event.target ) );
 			}
 
 			// Target the second password checkboxes to toggle password visibility.
 			if ( event.target.id === 'show-passwords' ) {
-				var password1 = document.querySelector( '#current-pw' );
-				var password2 = document.querySelector( '#new-pw' );
-
 				password1.setAttribute( 'type', setInputType( event.target ) );
 				password2.setAttribute( 'type', setInputType( event.target ) );
 			}
