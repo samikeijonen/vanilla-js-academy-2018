@@ -164,12 +164,21 @@
 		}, false );
 
 		/**
+		 * Is checkbox checked.
+		 *
+		 * @return boolean
+		 */
+		function isCheckboxChecked( checkbox ) {
+			return checkbox.checked;
+		}
+
+		/**
 		 * Input type, password or text.
 		 *
 		 * @return string
 		 */
-		function setInputType( checkbox ) {
-			return checkbox.checked ? 'text': 'password';
+		function setInputType( target ) {
+			return isCheckboxChecked( target ) ? 'text': 'password';
 		}
 	</script>
 
