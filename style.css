@@ -71,6 +71,13 @@ button:active {
 	text-decoration: none;
 }
 
+blockquote {
+	border-left: 4px solid;
+	font-style: italic;
+	margin: 0 0 2rem 0;
+	padding: 1rem 0 1rem 1.5rem;
+}
+
 /**
  * Grids
  */
