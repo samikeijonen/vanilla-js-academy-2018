@@ -33,11 +33,11 @@
 			xhr.onreadystatechange = function () {
 
 				// Process our return data
-				if ( xhr.status >= 200 && xhr.status < 300 ) {
+				if ( xhr.readyState === xhr.DONE && xhr.status >= 200 && xhr.status < 300 ) {
 					// Run the success callback
 					if ( success && typeof success === 'function' ) {
-						console.log( xhr.responseText );
-						console.log( JSON.parse( xhr.responseText ) );
+						console.log( xhr.readyState );
+						console.log( xhr );
 						success( JSON.parse( xhr.responseText ), xhr );
 					}
 				} else {
