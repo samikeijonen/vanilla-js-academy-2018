@@ -78,6 +78,10 @@ blockquote {
 	padding: 1rem 0 1rem 1.5rem;
 }
 
+p {
+	margin: 0 0 2rem 0;
+}
+
 /**
  * Grids
  */
@@ -100,4 +104,24 @@ blockquote {
 .px-1x {
 	padding-left: 0.5rem;
 	padding-right: 0.5rem;
+}
+
+.section-title {
+	text-transform: capitalize;
+}
+
+.entry {
+	margin-bottom: 2rem;
+	padding-bottom: 2rem;
+}
+
+.entry__byline {
+	color: #666;
+	font-size: 0.875rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+
+.entry__title {
+	margin-top: 0;
 }
