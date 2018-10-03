@@ -24,16 +24,22 @@
 	<script>
 		var makeRequest = function (url, method, success, failure, always) {
 			// Make sure a URL and method were provided
-			if ( ! url || ! method ) return;
+			if ( ! url || ! method ) {
+				return;
+			}
 
 			// Set up our HTTP request
 			var xhr = new XMLHttpRequest();
 
 			// Setup our listener to process request state changes
 			xhr.onreadystatechange = function () {
+				// Only run if the request is complete
+				if ( xhr.readyState !== xhr.DONE ) {
+					return;
+				}
 
 				// Process our return data
-				if ( xhr.readyState === xhr.DONE && xhr.status >= 200 && xhr.status < 300 ) {
+				if ( xhr.status >= 200 && xhr.status < 300 ) {
 					// Run the success callback
 					if ( success && typeof success === 'function' ) {
 						console.log( xhr.readyState );
