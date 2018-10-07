@@ -12,4 +12,6 @@
 
 ## Random Quote from JSON API.
 1. [Using XMLHttpRequest API](https://samikeijonen.github.io/vanilla-js-academy-2018/project-3/)
+1. [Using XMLHttpRequest API with simple callback functions](https://samikeijonen.github.io/vanilla-js-academy-2018/project-3/simple.html)
 1. [Using Fetch API](https://samikeijonen.github.io/vanilla-js-academy-2018/project-3/fetch.html)
+
