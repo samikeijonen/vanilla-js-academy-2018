@@ -20,7 +20,55 @@
 	<div id="js-stories"></div>
 
 	<script>
-		var makeRequest = function (url, method, success, failure, always) {
+		// Variables used for fetching the stories.
+		var stories      = document.querySelector( '#js-stories' );
+		var method       = 'GET';
+		var categories   = [ 'science', 'technology', 'movies', 'sports' ];
+		var articleCount = 4;
+
+		/**
+		* Sanitize and encode all HTML in a user-submitted string
+		* @param  {String} str  The user-submitted string
+		* @return {String} str  The sanitized string
+		*/
+		var sanitizeHTML = function ( str ) {
+			var temp = document.createElement( 'div' );
+			temp.textContent = str;
+			return temp.innerHTML;
+		};
+
+		// Render failure message.
+		var failureMessage = function ( data ) {
+			stories.innerHTML = 'Sorry but we could not get any articles.';
+		}
+
+		// Render section of articles.
+		var renderSection = function ( data ) {
+			console.log( JSON.parse( data.responseText ) );
+			console.log( JSON.parse( data.responseText ).section );
+
+			// Data using JSON format.
+			data = JSON.parse( data.responseText );
+
+			// Section title.
+			stories.innerHTML += '<h2 class="section-title">' + sanitizeHTML( data.section ) + '</h2>';
+
+			// Get only 4 (articleCount) articles on each section.
+			articles = data.results.slice(0, articleCount);
+
+			// Loop them and add the markup.
+			articles.forEach( function ( article )  {
+				stories.innerHTML  +=
+					'<article class="entry">' +
+						'<p class="entry__byline">'  + sanitizeHTML( article.section )  + '</p>'  +
+						'<h3 class="entry__title"><a href="' + sanitizeHTML( article.url ) + '">'  + sanitizeHTML( article.title ) + '</a></h3>' +
+						'<p class="entry__summary">' + sanitizeHTML( article.abstract ) + '</p>'  +
+					'</article>';
+			} );
+		};
+
+		// Make request to API.
+		var makeRequest = function ( url, method ) {
 			// Make sure a URL and method were provided
 			if ( ! url || ! method ) {
 				return;
@@ -38,21 +86,12 @@
 
 				// Process our return data
 				if ( xhr.status >= 200 && xhr.status < 300 ) {
-					// Run the success callback
-					if ( success && typeof success === 'function' ) {
-						success( JSON.parse( xhr.responseText ), xhr );
-					}
+					// Run on success.
+					renderSection( xhr );
 				} else {
-					// Run the failure callback
-					if ( failure && typeof failure === 'function' ) {
-						failure( xhr );
-					}
+					// Run on failure.
+					failureMessage( xhr );
 				}
-
-				if ( always && typeof always === 'function' ) {
-					always( JSON.parse( xhr.responseText ), xhr );
-				}
-
 			};
 
 			// Create and send a request
@@ -62,54 +101,19 @@
 
 		};
 
-		/**
-		* Sanitize and encode all HTML in a user-submitted string
-		* @param  {String} str  The user-submitted string
-		* @return {String} str  The sanitized string
-		*/
-		var sanitizeHTML = function ( str ) {
-			var temp = document.createElement( 'div' );
-			temp.textContent = str;
-			return temp.innerHTML;
+		// Loop all categories.
+		var getArticles = function () {
+			categories.forEach( function ( category, index ) {
+				// Get API URL based on category.
+				var url = 'https://api.nytimes.com/svc/topstories/v2/' + category + '.json?api-key=fffdfe3c6b7547ebacd26ffb9a2a410f';
+
+				// Make request on that API URL.
+				makeRequest( url, method );
+			} );
 		};
 
-		// Variables used for fetching the stories.
-		var stories    = document.querySelector( '#js-stories' );
-		var method     = 'GET';
-		var categories = [ 'science', 'technology', 'movies', 'sports' ];
-
-		// Loop all categories.
-		categories.forEach( function ( category, index ) {
-			// Get API URL based on category.
-			var url = 'https://api.nytimes.com/svc/topstories/v2/' + category + '.json?api-key=fffdfe3c6b7547ebacd26ffb9a2a410f';
-
-			// Make request on that API URL.
-			makeRequest( url, method, function ( posts ) {
-				console.log( posts );
-				console.log( posts.results );
-
-				// Articles.
-				var article = posts.results;
-
-				// Section title.
-				stories.innerHTML  += '<h2 class="section-title">' + sanitizeHTML( posts.section ) + '</h2>';
-
-				// Loop only 4 articles.
-				for ( var i = 0; i < article.length; i++ ) {
-					stories.innerHTML  +=
-						'<article class="entry">' +
-							'<p class="entry__byline">'  + sanitizeHTML( article[i].section )  + '</p>'  +
-							'<h3 class="entry__title">'  + sanitizeHTML( article[i].title )    + '</h3>' +
-							'<p class="entry__summary">' + sanitizeHTML( article[i].abstract ) + '</p>'  +
-						'</article>';
-
-					if ( i === 3 ) {
-						break;
-					}
-				}
-
-			} );
-		} );
+		// Init articles.
+		getArticles();
 	</script>
 
 </body>
