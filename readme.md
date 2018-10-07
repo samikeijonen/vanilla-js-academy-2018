@@ -16,7 +16,6 @@
 1. [Using Fetch API](https://samikeijonen.github.io/vanilla-js-academy-2018/project-3/fetch.html)
 
 ## Top stories from JSON API.
-1. [Using XMLHttpRequest API](https://samikeijonen.github.io/vanilla-js-academy-2018/project-4/)
-1. [Using XMLHttpRequest API to get articles from nytimes.com](https://samikeijonen.github.io/vanilla-js-academy-2018/project-3/)
+1. [Using XMLHttpRequest API to get articles from nytimes.com](https://samikeijonen.github.io/vanilla-js-academy-2018/project-4/)
 1. [Original code for getting the articles from nytimes.com](https://samikeijonen.github.io/vanilla-js-academy-2018/project-3/original.html)
 
