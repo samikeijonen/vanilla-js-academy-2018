@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Random Ron Swanson using fetch API</title>
+
+	<meta charset="utf-8">
+
+	<!-- Force latest available IE rendering engine and Chrome Frame (if installed) -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<!-- Mobile Screen Resizing -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="../style.css" rel="stylesheet">
+</head>
+<body>
+
+	<h1>Random Ron Swanson using fetch API</h1>
+
+	<blockquote class="js-blockquote"></blockquote>
+
+	<p><button class="js-new-quote">More Ron</button></p>
+
+	<script>
+		// Variables used for fetching the quote.
+		var quote          = document.querySelector( '.js-blockquote' );
+		var newQuote       = document.querySelector( '.js-new-quote' );
+		var url            = 'https://ron-swanson-quotes.herokuapp.com/v2/quotes';
+		var method         = 'GET';
+		var failureMessage = 'Something went wrong, can you try again.';
+
+		// Make fetch request to API.
+		function makeRequest( url, data ) {
+			return fetch( url )
+				.then( function( response ) {
+					if ( response.ok ) {
+						console.log( response );
+						// Similar than JSON.parse( response )?
+						return response.json();
+					} else {
+						failedMessage( data );
+					}
+				} )
+				.then( function( data ) {
+					console.log( JSON.stringify( data ) );
+					getQuote( data );
+				} )
+				.catch( function( error ) {
+					console.log( 'There has been a problem with your fetch operation: ', error.message );
+				} );
+		}
+
+		// When request is successfull.
+		function getQuote( data ) {
+			console.log( data );
+			quote.textContent = data[0];
+		}
+
+		// When request has failed.
+		function failedMessage( data ) {
+			console.log( data );
+			quote.textContent = failureMessage;
+		}
+
+		// Get quote.
+		makeRequest( url );
+
+		// Get new quote with a button click.
+		newQuote.addEventListener( 'click', function ( event ) {
+			makeRequest( url );
+		}, false );
+	</script>
+
+</body>
+</html>
