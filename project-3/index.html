@@ -22,7 +22,15 @@
 	<p><button class="js-new-quote">More Ron</button></p>
 
 	<script>
-		var makeRequest = function (url, method, success, failure, always) {
+		// Variables used for fetching the quote.
+		var quote    = document.querySelector( '.js-blockquote' );
+		var newQuote       = document.querySelector( '.js-new-quote' );
+		var url            = 'https://ron-swanson-quotes.herokuapp.com/v2/quotes';
+		var method         = 'GET';
+		var failureMessage = 'Something went wrong, can you try again.';
+
+		// Make XHR request to API.
+		var makeRequest = function ( url, method, success, failure, always ) {
 			// Make sure a URL and method were provided
 			if ( ! url || ! method ) {
 				return;
@@ -42,8 +50,6 @@
 				if ( xhr.status >= 200 && xhr.status < 300 ) {
 					// Run the success callback
 					if ( success && typeof success === 'function' ) {
-						console.log( xhr.readyState );
-						console.log( xhr );
 						success( JSON.parse( xhr.responseText ), xhr );
 					}
 				} else {
@@ -54,7 +60,7 @@
 				}
 
 				if ( always && typeof always === 'function' ) {
-					always( JSON.parse( xhr.responseText ), xhr );
+					always( xhr );
 				}
 
 			};
@@ -66,33 +72,29 @@
 
 		};
 
-		/**
-		* Sanitize and encode all HTML in a user-submitted string
-		* @param  {String} str  The user-submitted string
-		* @return {String} str  The sanitized string
-		*/
-		var sanitizeHTML = function ( str ) {
-			var temp = document.createElement( 'div' );
-			temp.textContent = str;
-			return temp.innerHTML;
-		};
+		// When request is successfull.
+		function success( post, xhr ) {
+			console.log( xhr.status );
+			quote.textContent = post[0];
+		}
 
-		// Variables used for fetching the quote.
-		var quote    = document.querySelector( '.js-blockquote' );
-		var newQuote = document.querySelector( '.js-new-quote' );
-		var url      = 'https://ron-swanson-quotes.herokuapp.com/v2/quotes';
-		var method   = 'GET';
+		// When request has failed.
+		function failure( xhr ) {
+			console.log( xhr.status );
+			quote.innerHTML = failureMessage;
+		}
+
+		// Always run this.
+		function always( xhr ) {
+			console.log( xhr );
+		}
 
 		// Get quote.
-		makeRequest( url, method, function ( post ) {
-			quote.innerHTML = sanitizeHTML( post );
-		} );
+		makeRequest( url, method, success, failure, always );
 
 		// Get new quote with a button click.
 		newQuote.addEventListener( 'click', function ( event ) {
-			makeRequest( url, method, function ( post ) {
-				quote.innerHTML = sanitizeHTML( post );
-			} );
+			makeRequest( url, method, success, failure, always );
 		}, false );
 	</script>
 
