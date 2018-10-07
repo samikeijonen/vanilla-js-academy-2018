@@ -9,3 +9,7 @@
 ## Farenheit/Celcius Calculator
 1. [Farenheit/Celcius Calculator](https://samikeijonen.github.io/vanilla-js-academy-2018/project-2/)
 1. [Farenheit/Celcius Calculator - original](https://samikeijonen.github.io/vanilla-js-academy-2018/project-2/original.html)
+
+## Random Quote from JSON API.
+1. [Using XMLHttpRequest API](https://samikeijonen.github.io/vanilla-js-academy-2018/project-3/)
+1. [Using Fetch API](https://samikeijonen.github.io/vanilla-js-academy-2018/project-3/fetch.html)
