@@ -31,10 +31,15 @@ h2 {
 /**
 * Forms
 */
-input {
+input,
+textarea {
 	margin-bottom: 1em;
 	padding: 0.5em 1em;
 	width: 100%;
+}
+
+textarea {
+	min-height: 10em;
 }
 
 [type="checkbox"] {

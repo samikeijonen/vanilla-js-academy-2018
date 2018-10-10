@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Word Count</title>
+
+	<meta charset="utf-8">
+
+	<!-- Force latest available IE rendering engine and Chrome Frame (if installed) -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<!-- Mobile Screen Resizing -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="../style.css" rel="stylesheet">
+</head>
+<body>
+
+	<h1>Word Count</h1>
+
+	<textarea id="textarea"></textarea>
+
+	<p>You've written <strong><span id="word-count">0</span> words</strong> and <strong><span id="character-count">0</span> characters</strong>.</p>
+
+	<script>
+		var textarea  = document.querySelector( '#textarea' );
+		var wordCount = document.querySelector( '#word-count' );
+		var charCount = document.querySelector( '#character-count' );
+
+		textarea.addEventListener( 'input', function ( event ) {
+			// Convert string into an array and calculate length.
+			wordCount.textContent = textarea.value.split( ' ' ).length;
+
+			// Calculate string lenght.
+			charCount.textContent = textarea.value.length;
+		}, false );
+	</script>
+
+</body>
+</html>
