@@ -21,10 +21,13 @@
 
 	<p>You've written <strong><span id="word-count">0</span> words</strong> and <strong><span id="character-count">0</span> characters</strong>.</p>
 
+	<div id="a11y-speak" class="screen-reader-text" aria-live="polite" aria-relevant="additions text" aria-atomic="true"></div>
+
 	<script>
 		var textarea  = document.querySelector( '#textarea' );
 		var wordCount = document.querySelector( '#word-count' );
 		var charCount = document.querySelector( '#character-count' );
+		var a11ySpeak = document.querySelector( '#a11y-speak' );
 
 		textarea.addEventListener( 'input', function ( event ) {
 			// Convert string into an array and calculate length.
@@ -38,6 +41,12 @@
 
 			// Calculate string length.
 			charCount.textContent = textarea.value.length;
+
+			// Add information to AT devices like screen readers.
+			// Wait 2 sec before announcing.
+			setTimeout( function() {
+				a11ySpeak.textContent = 'You\'ve written ' + filteredWords.length + ' words and ' + textarea.value.length +  ' characters';
+			}, 2000 )
 		}, false );
 	</script>
 
