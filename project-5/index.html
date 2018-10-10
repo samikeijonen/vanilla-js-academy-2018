@@ -28,9 +28,15 @@
 
 		textarea.addEventListener( 'input', function ( event ) {
 			// Convert string into an array and calculate length.
-			wordCount.textContent = textarea.value.split( ' ' ).length;
+			// Filter empty ones out.
+			var filteredWords = textarea.value.split( ' ' ).filter( function ( word ) {
+				return word !== '';
+			} );
 
-			// Calculate string lenght.
+			// Calculate array (word) length.
+			wordCount.textContent = filteredWords.length;
+
+			// Calculate string length.
 			charCount.textContent = textarea.value.length;
 		}, false );
 	</script>
