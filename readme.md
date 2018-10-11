@@ -19,3 +19,6 @@
 1. [Using XMLHttpRequest API to get articles from nytimes.com](https://samikeijonen.github.io/vanilla-js-academy-2018/project-4/)
 1. [Original code for getting the articles from nytimes.com](https://samikeijonen.github.io/vanilla-js-academy-2018/project-4/original.html)
 
+## Word count.
+1. [Word and character count from textarea field](https://samikeijonen.github.io/vanilla-js-academy-2018/project-5/)
+
