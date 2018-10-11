@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Monsters game</title>
+
+	<meta charset="utf-8">
+
+	<!-- Force latest available IE rendering engine and Chrome Frame (if installed) -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<!-- Mobile Screen Resizing -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="../style.css" rel="stylesheet">
+</head>
+<body>
+
+	<h1>Monsters!</h1>
+
+	<p>Click on a door to find your monster friends. Avoid the sock!</p>
+
+	<div id="game"></div>
+
+	<footer class="padding-top">
+		<p class="text-small text-muted">Icons by <a href="https://thenounproject.com/term/door/311732/">Jamie Dickinson</a>, <a href="https://thenounproject.com/term/monster/184225/">Nicky Knicky</a>, <a href="https://thenounproject.com/term/monster/1510400/">Alvaro Cabrera</a>, <a href="https://thenounproject.com/term/monster/28460/">Eliricon</a>, <a href="https://thenounproject.com/term/monster/82823/">April Yang</a>, <a href="https://thenounproject.com/term/monster/1062009/">tk66</a>, <a href="https://thenounproject.com/term/monster/24990/">Alex WaZa</a>, <a href="https://thenounproject.com/term/monster/37212/">Husein Aziz</a>, and <a href="https://thenounproject.com/term/socks/38451/">Yazmin Alanis</a>.</p>
+	</footer>
+
+	<script>
+		// The game.
+		var game  = document.querySelector( '#game' );
+		var count = 0;
+
+		// The monsters and socks.
+		var monsters = [
+			'sock!',
+			'monster1.svg',
+			'monster2.svg',
+			'monster3.svg',
+			'monster4.svg',
+			'monster5.svg',
+			'monster6.svg',
+			'monster7.svg',
+			'monster8.svg',
+			'monster9.svg',
+			'monster10.svg',
+			'monster11.svg'
+		];
+
+		/**
+		 * Get random monster.
+		 */
+		function randomMonster( array ) {
+			return random = array[ Math.floor( Math.random() * array.length ) ];
+		}
+
+		/**
+		 * Create list element and append to #game.
+		 */
+		function createMonsters() {
+			// Create list of monsters.
+			var wrapperELement = document.createElement( 'ul' );
+			wrapperELement.id = 'grid-monsters';
+			wrapperELement.classList.add( 'grid-monsters' );
+			game.appendChild( wrapperELement );
+
+			var gameWrapper = document.querySelector( '#grid-monsters' );
+
+			// Loop monsters and add doors.
+			monsters.forEach( function ( monster )  {
+				gameWrapper.innerHTML +=
+					'<li><button class="button--reset js-monster js-monster-button"><img class="js-monster" src="img/door.svg" alt="Open to door by clicking"></button></li>'
+			} );
+
+			// Create counter wrapper.
+			var wrapperCounter = document.createElement( 'div' );
+			wrapperCounter.id = 'counter-monsters';
+			wrapperCounter.innerHTML = 'You have <span id="counter">' + count + '</span> monsters.';
+			game.appendChild( wrapperCounter );
+		}
+
+		/**
+		 * Create play again button.
+		 */
+		 function createPlayAgain() {
+			var button = document.createElement( 'button' );
+			button.id = 'play-again';
+			button.textContent = 'Play again?';
+			return button;
+		 }
+
+		// Do magic when clicking the doors.
+		document.documentElement.addEventListener( 'click', function ( event ) {
+			// Bail if we didn't click "js-monster" button or image.
+			if ( ! event.target.classList.contains( 'js-monster' ) ) {
+				return;
+			}
+
+			// Get random monster and remove it from array because we don't
+			// want to show the same monster again.
+			var random = randomMonster( monsters );
+			var index  = monsters.indexOf( random );
+			if ( index > -1 ) {
+				monsters.splice( index, 1 );
+			}
+
+			// Get counter.
+			var counter = document.querySelector( '#counter' );
+			console.log( monsters.length );
+
+			if ( random === 'sock!' ) {
+				// You won or loose.
+				if ( monsters.length === 0 ) {
+					event.target.parentNode.innerHTML = 'You have won the game!!';
+				} else {
+					event.target.parentNode.innerHTML = 'Sorry, you lost the game! But you got ' + count + ' monsters.';
+
+					// Reset the rest so that they can't be clicked.
+					var restOfDoors = document.querySelectorAll( '.js-monster' );
+					restOfDoors.forEach( function ( monster, index ) {
+						monster.classList.remove( 'js-monster' );
+					} );
+				}
+			} else {
+				// Add counter.
+				count++;
+				counter.textContent = count;
+
+				// On button click, child node is the img element.
+				if ( event.target.classList.contains( 'js-monster-button' ) ) {
+					event.target.setAttribute( 'disabled', '' );
+					event.target.classList.remove( 'js-monster' );
+					event.target.childNodes[0].classList.remove( 'js-monster' );
+					event.target.childNodes[0].src = 'img/' + random;
+				} else {
+					event.target.classList.remove( 'js-monster' );
+					event.target.parentNode.classList.remove( 'js-monster' );
+					event.target.parentNode.setAttribute( 'disabled', '' );
+					event.target.src = 'img/' + random;
+				}
+			}
+		}, false );
+
+		// Init monsters.
+		createMonsters();
+	</script>
+
+</body>
+</html>
