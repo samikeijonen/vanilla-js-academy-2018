@@ -105,10 +105,9 @@
 
 			// Get counter.
 			var counter = document.querySelector( '#counter' );
-			console.log( monsters.length );
 
 			if ( random === 'sock!' ) {
-				// You won or loose.
+				// You win or loose.
 				if ( monsters.length === 0 ) {
 					event.target.parentNode.innerHTML = 'You have won the game!!';
 				} else {
