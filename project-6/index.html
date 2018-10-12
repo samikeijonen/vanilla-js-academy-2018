@@ -46,6 +46,9 @@
 			'monster11.svg'
 		];
 
+		// Copy original from which we take Monsters off.
+		var monstersNew = monsters.slice( 0 );
+
 		/**
 		 * Get random monster.
 		 */
@@ -57,6 +60,15 @@
 		 * Create list element and append to #game.
 		 */
 		function createMonsters() {
+			// Reset game first from all markup.
+			game.innerHTML = '';
+
+			// Reset count.
+			count = 0;
+
+			// Reset Monsters.
+			monstersNew = monsters.slice( 0 );
+
 			// Create list of monsters.
 			var wrapperELement = document.createElement( 'ul' );
 			wrapperELement.id = 'grid-monsters';
@@ -79,17 +91,21 @@
 		}
 
 		/**
-		 * Create play again button.
+		 * Game over.
 		 */
-		 function createPlayAgain() {
-			var button = document.createElement( 'button' );
-			button.id = 'play-again';
-			button.textContent = 'Play again?';
-			return button;
-		 }
+		function gameOver( text ) {
+			game.innerHTML = '';
+			game.innerHTML = '<h2>' + text + '</h2><p><button id="play-again">Play again?</button></p>';
+		}
 
 		// Do magic when clicking the doors.
 		document.documentElement.addEventListener( 'click', function ( event ) {
+			// Play again resets everything.
+			if ( event.target.id === 'play-again' ) {
+				createMonsters();
+				return;
+			}
+
 			// Bail if we didn't click "js-monster" button or image.
 			if ( ! event.target.classList.contains( 'js-monster' ) ) {
 				return;
@@ -97,10 +113,10 @@
 
 			// Get random monster and remove it from array because we don't
 			// want to show the same monster again.
-			var random = randomMonster( monsters );
-			var index  = monsters.indexOf( random );
+			var random      = randomMonster( monstersNew );
+			var index       = monstersNew.indexOf( random );
 			if ( index > -1 ) {
-				monsters.splice( index, 1 );
+				monstersNew.splice( index, 1 );
 			}
 
 			// Get counter.
@@ -108,16 +124,10 @@
 
 			if ( random === 'sock!' ) {
 				// You win or loose.
-				if ( monsters.length === 0 ) {
-					event.target.parentNode.innerHTML = 'You have won the game!!';
+				if ( monstersNew.length === 0 ) {
+					gameOver( 'You have won the game!!' );
 				} else {
-					event.target.parentNode.innerHTML = 'Sorry, you lost the game! But you got ' + count + ' monsters.';
-
-					// Reset the rest so that they can't be clicked.
-					var restOfDoors = document.querySelectorAll( '.js-monster' );
-					restOfDoors.forEach( function ( monster, index ) {
-						monster.classList.remove( 'js-monster' );
-					} );
+					gameOver( 'Sorry, you lost the game! But you got ' + count + ' monsters.' );
 				}
 			} else {
 				// Add counter.
