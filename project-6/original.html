@@ -98,10 +98,8 @@
 			game.innerHTML = '<h2>' + text + '</h2><p><button id="play-again">Play again?</button></p>';
 		}
 
-		/**
-		 * Handle click events.
-		 */
-		function clickHandler() {
+		// Do magic when clicking the doors.
+		document.documentElement.addEventListener( 'click', function ( event ) {
 			// Play again resets everything.
 			if ( event.target.id === 'play-again' ) {
 				createMonsters();
@@ -115,8 +113,8 @@
 
 			// Get random monster and remove it from array because we don't
 			// want to show the same monster again.
-			var random = randomMonster( monstersNew );
-			var index  = monstersNew.indexOf( random );
+			var random      = randomMonster( monstersNew );
+			var index       = monstersNew.indexOf( random );
 			if ( index > -1 ) {
 				monstersNew.splice( index, 1 );
 			}
@@ -149,13 +147,10 @@
 					event.target.src = 'img/' + random;
 				}
 			}
-		}
+		}, false );
 
 		// Init monsters.
 		createMonsters();
-
-		// Do magic when clicking the doors.
-		document.documentElement.addEventListener( 'click', clickHandler, false );
 	</script>
 
 </body>

@@ -21,3 +21,6 @@
 ## Word count
 1. [Word and character count from textarea field](https://samikeijonen.github.io/vanilla-js-academy-2018/project-5/).
 
+## Monsters game
+1. [Click doors and try to avoid the sock!](https://samikeijonen.github.io/vanilla-js-academy-2018/project-6/).
+
