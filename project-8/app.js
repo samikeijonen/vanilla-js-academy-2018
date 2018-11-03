@@ -22,24 +22,24 @@ var weatherApp = (function () {
      * @returns {Object}            Merged values of defaults and options
      */
     var extend = function () {
-        // Variables
-        var extended = {};
+		// Variables
+		var extended = {};
 
-        // Merge the object into the extended object
-        var merge = function (obj) {
-            for (var prop in obj) {
-                if (obj.hasOwnProperty(prop)) {
-                    extended[prop] = obj[prop];
-                }
-            }
-        };
+		// Merge the object into the extended object
+		var merge = function ( obj ) {
+			for ( var prop in obj ) {
+				if ( obj.hasOwnProperty( prop ) ) {
+					extended[prop] = obj[prop];
+				}
+			}
+		};
 
-        // Loop through each object and conduct a merge
-        for (var i = 0; i < arguments.length; i++) {
-            merge(arguments[i]);
-        }
+		// Loop through each object and conduct a merge
+		for ( var i = 0; i < arguments.length; i++ ) {
+			merge(arguments[i]);
+		}
 
-        return extended;
+		return extended;
     };
 
 	/**
