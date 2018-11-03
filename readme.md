@@ -25,5 +25,5 @@
 [Click doors and try to avoid the sock!](https://samikeijonen.github.io/vanilla-js-academy-2018/project-6/).
 
 ## Weather app
-1. [Check weather on your current location](https://samikeijonen.github.io/vanilla-js-academy-2018/project-8/).
+[Check weather on your current location](https://samikeijonen.github.io/vanilla-js-academy-2018/project-8/).
 
