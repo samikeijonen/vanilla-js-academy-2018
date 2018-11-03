@@ -19,8 +19,11 @@
 1. [Original code for getting the articles from nytimes.com](https://samikeijonen.github.io/vanilla-js-academy-2018/project-4/original.html).
 
 ## Word count
-1. [Word and character count from textarea field](https://samikeijonen.github.io/vanilla-js-academy-2018/project-5/).
+[Word and character count from textarea field](https://samikeijonen.github.io/vanilla-js-academy-2018/project-5/).
 
 ## Monsters game
-1. [Click doors and try to avoid the sock!](https://samikeijonen.github.io/vanilla-js-academy-2018/project-6/).
+[Click doors and try to avoid the sock!](https://samikeijonen.github.io/vanilla-js-academy-2018/project-6/).
+
+## Weather app
+1. [Check weather on your current location](https://samikeijonen.github.io/vanilla-js-academy-2018/project-8/).
 
