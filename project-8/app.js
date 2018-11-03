@@ -1,7 +1,7 @@
 var weatherApp = (function () {
     'use strict;'
 
-    // Public APIs
+	// Public APIs
 	var publicAPIs = {};
 	var settings;
 
@@ -58,7 +58,7 @@ var weatherApp = (function () {
 	};
 
 	/**
-	 * Convert the response text into JSON.
+	 * Render failure message.
 	 *
 	 * @param {Object} data
 	 */
@@ -75,6 +75,11 @@ var weatherApp = (function () {
 
 	/**
 	 * Make XHR request to API.
+	 *
+	 * @param {String}   url     The URL to make the request to
+	 * @param {String}   method  API method (GET, POST)
+	 * @param {Function} success Callback when successful
+	 * @param {Function} error   Callback when error
 	 */
 	var makeRequest = function ( url, method, success, error ) {
 		// Make sure a URL and method were provided
@@ -114,8 +119,8 @@ var weatherApp = (function () {
 
 	/**
 	 * Sanitize and encode all HTML in a user-submitted string
-	 * @param  {String} str  The user-submitted string
-	 * @return {String} str  The sanitized string
+	 * @param  {String} str The user-submitted string
+	 * @return {String} str The sanitized string
 	 */
 	var sanitizeHTML = function ( str ) {
 		var temp = document.createElement('div');
