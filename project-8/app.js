@@ -11,8 +11,8 @@ var weatherApp = (function () {
 		apiKey: '',
 		showFahrenheit: false,
 		showIcon: true,
-		message: function ( temp, desc, city) {
-			return 'It is currently ' + temp + '&deg; in ' + city + ', ' + desc + '.';
+		message: function ( temp, desc, city ) {
+			return 'It is currently ' + getTemp( temp ) + ' in ' + city + ', ' + desc + '.';
 		}
 	};
 
@@ -43,12 +43,18 @@ var weatherApp = (function () {
     };
 
 	/**
-	 * Convert Celcius to Farenheits.
+	 * Show temperature using Celcius or Farenheits.
 	 *
 	 * @return number
 	 */
-	var celciusToFarenheit = function ( temp ) {
-		return Math.round( (temp * 9/5) + 32 );
+	var getTemp = function ( temp ) {
+		// Return Celcius.
+		if ( ! settings.showFahrenheit ) {
+			return temp + '&#8451;';
+		}
+
+		// Return Farenheits.
+		return Math.round( (temp * 9/5) + 32 ) + '&#8457;';
 	};
 
 	/**
@@ -138,6 +144,8 @@ var weatherApp = (function () {
 
 				data = JSON.parse( data.responseText );
 				console.log( data );
+
+				// Make request to weather API.
 				makeRequest( 'https://api.weatherbit.io/v2.0/current?&lat=' + data.latitude + '&lon=' + data.longitude + '&key=' + settings.apiKey, 'GET',
 					// Success function.
 					function ( data ) {
