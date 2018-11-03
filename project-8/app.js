@@ -17,10 +17,10 @@ var weatherApp = (function () {
 	};
 
 	/**
-     * Merge two or more objects together.
-     * @param   {Object}   objects  The objects to merge together
-     * @returns {Object}            Merged values of defaults and options
-     */
+	 * Merge two or more objects together.
+	 * @param   {Object}   objects  The objects to merge together
+	 * @returns {Object}            Merged values of defaults and options
+	*/
     var extend = function () {
 		// Variables
 		var extended = {};
