@@ -151,12 +151,30 @@ var weatherApp = (function () {
 					function ( data ) {
 						data = JSON.parse( data.responseText );
 						console.log( data );
+
+						// Weather text.
+						var weatherText = '';
+
+						// Render weather image.
+						if ( settings.showIcon ) {
+							weatherText +=
+							'<figure class="weather-app__img">' +
+								'<img alt="' + data.data[0].weather.description + '" height="50" width="50" src="https://www.weatherbit.io/static/img/icons/' + sanitizeHTML( data.data[0].weather.icon ) + '.png">' +
+							'</figure>';
+						}
+
+						// Render weather info using setting.
+						weatherText +=
+							'<p class="weather-app_content">' +
+								settings.message(
+									sanitizeHTML( data.data[0].temp ),
+									sanitizeHTML( data.data[0].weather.description ),
+									sanitizeHTML( data.data[0].city_name ),
+								);
+							+ '</p>'
+
 						// Render the weather.
-						app.innerHTML = settings.message(
-							sanitizeHTML( data.data[0].temp ),
-							sanitizeHTML( data.data[0].weather.description ),
-							sanitizeHTML( data.data[0].city_name ),
-						);
+						app.innerHTML = weatherText;
 					},
 					// Failure function.
 					function ( data ) {

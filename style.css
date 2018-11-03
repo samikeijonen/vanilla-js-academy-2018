@@ -115,6 +115,11 @@ footer {
 	padding: 0;
 }
 
+/* Weather App. */
+.weather-app__img {
+	margin: 0 0 1.5rem;
+}
+
 /**
  * Utilities
  */
