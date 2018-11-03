@@ -131,7 +131,7 @@ var weatherApp = (function () {
 	/**
 	 * Public API.
 	 */
-    publicAPIs.init = function ( options ) {
+	publicAPIs.init = function ( options ) {
 
 		// Merge options into defaults.
 		settings = extend( defaults, options || {} );
