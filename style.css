@@ -120,6 +120,38 @@ footer {
 	margin: 0 0 1.5rem;
 }
 
+/* Tabs. */
+[role="tablist"] {
+	display: flex;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+[role="tab"] {
+	display: block;
+	padding: 0.75rem 1.25rem;
+	text-decoration: none;
+}
+
+[role="tab"][aria-selected="true"] {
+	background-color: #fafafa;
+	border: 1px solid;
+	border-bottom: 0;
+	position: relative;
+	top: 1px;
+}
+
+.tab-content {
+	background-color: #fafafa;
+	border: 1px solid;
+	padding: 1.5rem;
+}
+
+[role="tabpanel"] h2 {
+	margin-top: 0;
+}
+
 /**
  * Utilities
  */

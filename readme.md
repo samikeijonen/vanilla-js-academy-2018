@@ -22,7 +22,15 @@
 [Word and character count from textarea field](https://samikeijonen.github.io/vanilla-js-academy-2018/project-5/).
 
 ## Monsters game
-[Click doors and try to avoid the sock!](https://samikeijonen.github.io/vanilla-js-academy-2018/project-6/).
+[Click doors and try to avoid the sock!]
+(https://samikeijonen.github.io/vanilla-js-academy-2018/project-6/).
+
+## Toggle tabs
+[Toggle tabs demo](https://samikeijonen.github.io/vanilla-js-academy-2018/project-7/).
+- Helper documents for accessbility:
+	- [Tabbed Interfaces]
+(https://inclusive-components.design/tabbed-interfaces/).
+	- [Tabs ARIA best practises](https://www.w3.org/TR/2017/NOTE-wai-aria-practices-1.1-20171214/examples/tabs/tabs-1/tabs.html).
 
 ## Weather app
 [Check weather on your current location](https://samikeijonen.github.io/vanilla-js-academy-2018/project-8/).
