@@ -26,7 +26,7 @@
 (https://samikeijonen.github.io/vanilla-js-academy-2018/project-6/).
 
 ## Toggle tabs
-[Toggle tabs demo](https://samikeijonen.github.io/vanilla-js-academy-2018/project-7/).
+- [Toggle tabs demo](https://samikeijonen.github.io/vanilla-js-academy-2018/project-7/).
 - Helper documents for accessbility:
 	- [Tabbed Interfaces]
 (https://inclusive-components.design/tabbed-interfaces/).
