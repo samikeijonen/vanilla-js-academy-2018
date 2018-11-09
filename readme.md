@@ -22,8 +22,7 @@
 [Word and character count from textarea field](https://samikeijonen.github.io/vanilla-js-academy-2018/project-5/).
 
 ## Monsters game
-[Click doors and try to avoid the sock!]
-(https://samikeijonen.github.io/vanilla-js-academy-2018/project-6/).
+[Click doors and try to avoid the sock!](https://samikeijonen.github.io/vanilla-js-academy-2018/project-6/).
 
 ## Toggle tabs
 - [Toggle tabs demo](https://samikeijonen.github.io/vanilla-js-academy-2018/project-7/).
