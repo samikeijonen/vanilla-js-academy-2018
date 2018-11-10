@@ -102,6 +102,12 @@ var tabsPanel = (function () {
 		}
 	};
 
+	/**
+	 * Switch tab by clicking or by arrow keys.
+	 *
+	 * @param {Object} activeTab    Current active tab.
+	 * @param {Object} newActiveTab New active tab.
+	 */
 	var switchTab = function ( activeTab, newActiveTab ) {
 		// Remove ARIA and add tabindex (current active).
 		activeTab.removeAttribute( 'aria-selected' );
