@@ -99,7 +99,6 @@ var tabsPanel = (function () {
 		var tabContent = document.querySelectorAll( tabContent );
 		for ( var i = 0; i < tabContent.length; i++ ) {
 			tabContent[i].querySelector( tabPanes ).hidden = false;
-			tabContent[i].querySelector( tabPanes ).classList.add( 'is-active' );
 		}
 	};
 
