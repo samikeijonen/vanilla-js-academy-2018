@@ -134,12 +134,11 @@ var tabsPanel = (function () {
 	 */
 	var clickHandler = function ( event ) {
 		// Only run if the click was on a tab.
-		var newActiveTab = event.target.closest( settings.selectorTabs + ' a' );
-		if ( ! newActiveTab ) {
+		var clickedTab = event.target.closest( settings.selectorTabs + ' a' );
+		if ( ! clickedTab ) {
 			return;
 		}
 
-		console.log( event.target, newActiveTab );
 		event.preventDefault();
 
 		// Current active tab.
@@ -147,7 +146,7 @@ var tabsPanel = (function () {
 
 		// New active tab.
 		var newActiveTab = event.target;
-		console.log( activeTab );
+
 		// Switch tab if it was not current active already.
 		if ( newActiveTab !== activeTab ) {
 			switchTab( activeTab, newActiveTab );
