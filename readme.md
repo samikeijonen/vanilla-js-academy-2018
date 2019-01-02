@@ -33,3 +33,6 @@
 ## Weather app
 [Check weather on your current location](https://samikeijonen.github.io/vanilla-js-academy-2018/project-8/).
 
+## localStorage and form data
+[Save form data in localStorage](https://samikeijonen.github.io/vanilla-js-academy-2018/project-9/).
+
