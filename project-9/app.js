@@ -17,11 +17,19 @@ var saveFormData = (function () {
 			return;
 		}
 
+		/**
+		 * Get form data from localStorage.
+		 */
 		var getformData = function () {
 			var savedData = localStorage.getItem( 'saveFormData');
 			return savedData ? JSON.parse( savedData ) : {};
 		}
 
+		/**
+		 * Listen form changes and save data.
+		 *
+		 * @param {object} e Event handler.
+		 */
 		var listenForm = function ( e ) {
 			// Get saved data from localStorage.
 			var savedDataForm = getformData();
@@ -30,6 +38,7 @@ var saveFormData = (function () {
 			var key = e.target.name;
 			var value = e.target.value;
 
+			// Save data.
 			if ( e.target.type === 'checkbox' ) {
 				savedDataForm[key] = e.target.checked === true ? 'on' : 'off';
 			} else {
@@ -42,42 +51,33 @@ var saveFormData = (function () {
 			localStorage.setItem( 'saveFormData', JSON.stringify( savedDataForm ) );
 		}
 
+		/**
+		 * Populate form.
+		 */
 		var populateForm = function () {
 			// Get saved data from localStorage.
 			var savedDataForm = getformData();
 
+			// Get all form fields.
 			var fields = form.elements;
 
-			console.log( fields );
-
-			// Check that we have data object.
-			if ( savedDataForm ) {
-
-				// Loop all keys and populate form fields.
-				for ( var key in savedDataForm ) {
-					if ( savedDataForm.hasOwnProperty( key) ) {
-						//console.log( key, savedDataForm[key] );
-						var formField = document.querySelector( '[name=' + key + ']' );
-
-						if ( formField ) {
-							console.log( formField.value, savedDataForm[key] );
-
-							if ( formField.type === 'checkbox' ) {
-								formField.value === 'on' ? formField.checked = true : formField.checked = false;
-							} else if ( formField.type === 'radio' ) {
-								if ( formField.value === savedDataForm[key] ) {
-									formField.checked = true;
-								}
-							} else {
-								formField.value = savedDataForm[key];
-							}
-
-						}
+			// Loop over each field in the form and load any saved data.
+			Array.from( fields ).forEach( function ( field ) {
+				if ( savedDataForm[ field.name ] ) {
+					if ( field.type === 'checkbox' ) {
+						savedDataForm[ field.name ] === 'on' ? field.checked = true : field.checked = false;
+					} else if ( field.type === 'radio' ) {
+						savedDataForm[ field.name ] === field.value ? field.checked = true : field.checked = false;
+					} else {
+						field.value = savedDataForm[ field.name ];
 					}
 				}
-			}
+			} );
 		}
 
+		/**
+		 * Clear data on submit.
+		 */
 		var submitHandler = function () {
 			localStorage.removeItem( 'saveFormData' );
 		}
@@ -85,11 +85,11 @@ var saveFormData = (function () {
 		// Listen form in real time.
 		form.addEventListener( 'input', listenForm, false );
 
-		// Populate form data on page load.
+		// Listen page load.
 		window.addEventListener( 'load', populateForm, false );
 
-		// Clear data on submit.
-		document.addEventListener( 'submit', submitHandler, false );
+		// Listen form submit.
+		form.addEventListener( 'submit', submitHandler, false );
     };
 
     return publicAPIs;
