@@ -2,7 +2,6 @@ var saveFormData = (function () {
 	'use strict;'
 
 	var form = document.querySelector( '#save-me' );
-	var formData = {};
 
 	// Public APIs
 	var publicAPIs = {};
