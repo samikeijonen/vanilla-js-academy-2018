@@ -5,6 +5,11 @@ var cachedArticles = (function () {
 	var publicAPIs = {};
 	var settings;
 
+	// Defaults
+	var defaults = {
+		selectorApp: '#app',
+	};
+
 	/**
 	 * Dynamically vary the API endpoint
 	 * @return {String} The API endpoint
@@ -15,11 +20,6 @@ var cachedArticles = (function () {
 		if (random < 0.3) return endpoint + 'pirates.json';
 		if (random < 0.6) return endpoint + 'pirates2.json';
 		return endpoint + 'fail.json';
-	};
-
-	// Defaults
-	var defaults = {
-		selectorApp: '#app',
 	};
 
 	/**
@@ -48,20 +48,20 @@ var cachedArticles = (function () {
 		return extended;
 	};
 
-		/**
-		 * Get cached articles from localStorage.
-		 *
-		 * @return {Object} The cached articles.
-		 */
-		var getCachedArticles = function () {
-			var cached = localStorage.getItem( 'savedArticles' );
+	/**
+	 * Get cached articles from localStorage.
+	 *
+	 * @return {Object} The cached articles.
+	 */
+	var getCachedArticles = function () {
+		var cached = localStorage.getItem( 'savedArticles' );
 
-			if ( ! cached ) {
-				return;
-			}
+		if ( ! cached ) {
+			return;
+		}
 
-			return JSON.parse( cached );
-		};
+		return JSON.parse( cached );
+	};
 
 	/**
 	 * Render failure message.
