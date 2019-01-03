@@ -39,3 +39,6 @@
 ## localStorage and articles data from endpoint
 [Cache articles data in localStorage](https://samikeijonen.github.io/vanilla-js-academy-2018/project-10/).
 
+## Timer
+[You can start, stop, or reset the timer](https://samikeijonen.github.io/vanilla-js-academy-2018/project-11/).
+
