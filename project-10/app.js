@@ -77,6 +77,7 @@ var cachedArticles = (function () {
 		if ( savedArticles ) {
 			// There is already data, use it to render articles markup.
 			renderArticles( app, savedArticles.data.articles );
+			console.log( 'Data from cache' );
 		} else {
 			app.textContent = 'Something went wrong. Try again?';
 		}
@@ -206,6 +207,7 @@ var cachedArticles = (function () {
 		if ( isDataValid( savedArticles ) ) {
 			// The data is still good, use it to render articles markup.
 			renderArticles( app, savedArticles.data.articles );
+			console.log( 'Data from cache' );
 		} else {
 			// Get fresh data and use that instead.
 
