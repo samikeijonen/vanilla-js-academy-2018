@@ -46,7 +46,22 @@ var cachedArticles = (function () {
 		}
 
 		return extended;
-    };
+	};
+
+		/**
+		 * Get cached articles from localStorage.
+		 *
+		 * @return {Object} The cached articles.
+		 */
+		var getCachedArticles = function () {
+			var cached = localStorage.getItem( 'savedArticles' );
+
+			if ( ! cached ) {
+				return;
+			}
+
+			return JSON.parse( cached );
+		};
 
 	/**
 	 * Render failure message.
@@ -56,7 +71,7 @@ var cachedArticles = (function () {
 	 */
 	var renderFailure = function( app, data ) {
 		// Get data from localStorage.
-		var savedArticles = JSON.parse( localStorage.getItem( 'savedArticles' ) );
+		var savedArticles = getCachedArticles();
 
 		// Check if there is data.
 		if ( savedArticles ) {
@@ -111,10 +126,16 @@ var cachedArticles = (function () {
 		xhr.send();
 	};
 
+	/**
+	 * Check if the cached data is still valid.
+	 *
+	 * @param {Object} saved Cached and saved data.
+	 * @return {Boolean}     Returns true if it's still valid
+	 */
 	var isDataValid = function ( saved ) {
 
 		// Check that there's data, and a timestamp key.
-		if (!saved || !saved.data || !saved.timestamp) {
+		if ( ! saved || ! saved.data || ! saved.timestamp ) {
 			return false;
 		}
 
@@ -130,6 +151,9 @@ var cachedArticles = (function () {
 			return true;
 		}
 
+		// Return false in all other cases.
+		return false;
+
 	};
 
 	/**
@@ -143,6 +167,12 @@ var cachedArticles = (function () {
 		return temp.innerHTML;
 	};
 
+	/**
+	 * Render articles markup.
+	 *
+	 * @param {Object} app      Where to output data.
+	 * @param {Object} articles Articles data.
+	 */
 	var renderArticles = function ( app, articles ) {
 		articles.forEach( function ( article ) {
 			app.innerHTML +=
@@ -170,7 +200,7 @@ var cachedArticles = (function () {
 		}
 
 		// Get data from localStorage.
-		var savedArticles = JSON.parse( localStorage.getItem( 'savedArticles' ) );
+		var savedArticles = getCachedArticles();
 
 		// Check its validity.
 		if ( isDataValid( savedArticles ) ) {
