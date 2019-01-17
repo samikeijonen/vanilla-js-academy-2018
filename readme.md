@@ -42,3 +42,5 @@
 ## Timer
 [You can start, stop, or reset the timer](https://samikeijonen.github.io/vanilla-js-academy-2018/project-11/).
 
+## Todo list
+[Simple todo list app](https://samikeijonen.github.io/vanilla-js-academy-2018/project-12/).
