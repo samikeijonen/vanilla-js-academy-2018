@@ -173,6 +173,12 @@ footer {
 /**
  * Utilities
  */
+.reset-list {
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+
 .no-bold {
 	font-weight: normal;
 }
@@ -228,4 +234,8 @@ footer {
 .button--reset:active {
 	background-color: transparent;
 	color: #222;
+}
+
+.is-completed {
+	text-decoration: line-through;
 }
